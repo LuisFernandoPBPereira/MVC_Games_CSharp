@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Confirmação apagar Game";
+}
+
+<div class="text-center">
+    <h3>Realmente deseja apagar o game?</h3>
+</div>
+
+<a class="btn btn-primary btn-block" role="button" asp-controller="Games" asp-action="Index">Cancelar</a>
+<a class="btn btn-danger btn-block" role="button" asp-controller="Games" asp-action="Apagar">Confirmar</a>

@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Editar Game";
+}
+
+<div class="text-center">
+
+    <h1 class="display-4">Editar Game</h1>
+
+
+</div>
+
+<form>
+    <div class="form-group">
+        <label for="nome">Nome do Jogo</label>
+        <input type="text" class="form-control" placeholder="Ex.: Need For Speed Most Wanted">
+    </div>
+
+    <div class="form-group">
+        <label for="estudio">Estúdio</label>
+        <input type="text" class="form-control" placeholder="Ex.: EA Games">
+    </div>
+
+    <div class="form-group">
+        <label for="plataforma">Plataforma</label>
+        <input type="text" class="form-control" placeholder="Ex.: Xbox 360">
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">Alterar</button>
+    <a class="btn btn-secondary btn-block" role="button" asp-controller="Games" asp-action="Index">Voltar</a>
+</form>
+
