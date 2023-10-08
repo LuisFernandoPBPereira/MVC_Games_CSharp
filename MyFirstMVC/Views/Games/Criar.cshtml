@@ -1,4 +1,5 @@
-﻿@{
+﻿@model GamesModel
+@{
     ViewData["Title"] = "Criar de Game";
 }
 
@@ -9,20 +10,20 @@
     
 </div>
 
-<form>
+<form asp-controller="Games" asp-action="Criar" method="post">
     <div class="form-group">
-        <label for="nome">Nome do Jogo</label>
-        <input type="text" class="form-control" placeholder="Ex.: Need For Speed Most Wanted">
+        <label for="nome" >Nome do Jogo</label>
+        <input type="text" asp-for="NomeJogo" class="form-control" placeholder="Ex.: Need For Speed Most Wanted">
     </div>
 
     <div class="form-group">
         <label for="estudio">Estúdio</label>
-        <input type="text" class="form-control" placeholder="Ex.: EA Games">
+        <input type="text" asp-for="Estudio" class="form-control" placeholder="Ex.: EA Games">
     </div>
 
     <div class="form-group">
         <label for="plataforma">Plataforma</label>
-        <input type="text" class="form-control" placeholder="Ex.: Xbox 360">
+        <input type="text" asp-for="Plataforma" class="form-control" placeholder="Ex.: Xbox 360">
     </div>
     
     <button type="submit" class="btn btn-primary btn-block">Adicionar</button>

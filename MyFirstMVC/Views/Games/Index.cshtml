@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<GamesModel>
+@{
     ViewData["Title"] = "Listagem de Games";
 }
 
@@ -29,72 +30,24 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>mdo</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <a role="button" 
-                           class="btn btn-primary"
-                           asp-controller="Games"
-                           asp-action="Editar">
-                           Editar
-                       </a>
-                        <a role="button"
-                           class="btn btn-danger"
-                           asp-controller="Games"
-                           asp-action="ApagarConfirmacao">
-                           Apagar
-                       </a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>fat</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <a role="button" 
-                           class="btn btn-primary"
-                           asp-controller="Games"
-                           asp-action="Editar">
-                           Editar
-                       </a>
-                        <a role="button"
-                           class="btn btn-danger"
-                           asp-controller="Games"
-                           asp-action="ApagarConfirmacao">
-                           Apagar
-                       </a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>fat</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <a role="button" 
-                           class="btn btn-primary"
-                           asp-controller="Games"
-                           asp-action="Editar">
-                           Editar
-                       </a>
-                        <a role="button"
-                           class="btn btn-danger"
-                           asp-controller="Games"
-                           asp-action="ApagarConfirmacao">
-                           Apagar
-                       </a>
-                    </div>
-                </td>
-            </tr>
+            @if(Model != null && Model.Any())
+            {
+                foreach(GamesModel games in Model)
+                {
+                <tr>
+                    <th scope="row">@games.Id</th>
+                    <td>@games.NomeJogo</td>
+                    <td>@games.Estudio</td>
+                    <td>@games.Plataforma</td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a role="button" class="btn btn-primary" asp-controller="Games" asp-action="Editar" asp-route-id="@games.Id">Editar</a>
+                            <a role="button" class="btn btn-danger" asp-controller="Games" asp-action="ApagarConfirmacao" asp-route-id="@games.Id">Apagar</a>
+                        </div>
+                    </td>
+                </tr>
+                }
+            }
         </tbody>
     </table>
 </div>
