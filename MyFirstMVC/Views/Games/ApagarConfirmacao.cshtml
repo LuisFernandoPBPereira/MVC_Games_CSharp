@@ -1,10 +1,13 @@
-﻿@{
+﻿@model GamesModel
+@{
     ViewData["Title"] = "Confirmação apagar Game";
 }
 
 <div class="text-center">
-    <h3>Realmente deseja apagar o game?</h3>
+    <h3>Realmente deseja apagar o game (@Model.NomeJogo)?</h3>
 </div>
 
 <a class="btn btn-primary btn-block" role="button" asp-controller="Games" asp-action="Index">Cancelar</a>
-<a class="btn btn-danger btn-block" role="button" asp-controller="Games" asp-action="Apagar">Confirmar</a>
+<!-- Para a deleção ser concluída, precisamos passar o ID, diferentemente do form,
+     passamos o ID no asp-route-id, atribuindo @Model.Id-->
+<a class="btn btn-danger btn-block" role="button" asp-controller="Games" asp-route-id="@Model.Id" asp-action="Apagar">Confirmar</a>

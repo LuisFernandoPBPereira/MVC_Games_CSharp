@@ -1,4 +1,5 @@
-﻿@{
+﻿@model GamesModel
+@{
     ViewData["Title"] = "Editar Game";
 }
 
@@ -9,20 +10,23 @@
 
 </div>
 
-<form>
+<form asp-controller="Games" asp-action="Alterar">
+    <!-- O Id deve ser passado por um input do tipo hidden para associá-lo 
+         ao banco para poder editá-lo, caso contrário, cairá na validação gamesDB==null -->
+    <input type="hidden" asp-for="Id"/>
     <div class="form-group">
         <label for="nome">Nome do Jogo</label>
-        <input type="text" class="form-control" placeholder="Ex.: Need For Speed Most Wanted">
+        <input type="text" asp-for="NomeJogo" class="form-control" placeholder="Ex.: Need For Speed Most Wanted">
     </div>
 
     <div class="form-group">
         <label for="estudio">Estúdio</label>
-        <input type="text" class="form-control" placeholder="Ex.: EA Games">
+        <input type="text" asp-for="Estudio" class="form-control" placeholder="Ex.: EA Games">
     </div>
 
     <div class="form-group">
         <label for="plataforma">Plataforma</label>
-        <input type="text" class="form-control" placeholder="Ex.: Xbox 360">
+        <input type="text" asp-for="Plataforma" class="form-control" placeholder="Ex.: Xbox 360">
     </div>
 
     <button type="submit" class="btn btn-primary btn-block">Alterar</button>

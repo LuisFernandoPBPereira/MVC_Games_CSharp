@@ -12,6 +12,10 @@ namespace MyFirstMVC.Repositorio
         {
             _bancoContext= bancoContext;
         }
+        public GamesModel ListarPorId(int id)
+        {
+            return _bancoContext.Games.FirstOrDefault(x => x.Id == id);
+        }
         public List<GamesModel> BuscarGames()
         {
             return _bancoContext.Games.ToList();
@@ -22,6 +26,33 @@ namespace MyFirstMVC.Repositorio
             _bancoContext.Games.Add(games);
             _bancoContext.SaveChanges();
             return games;
+        }
+
+        public GamesModel Atualizar(GamesModel games)
+        {
+            GamesModel gamesDB = ListarPorId(games.Id);
+
+            if (gamesDB == null) throw new System.Exception("Houve um erro na atualização do Game");
+
+            gamesDB.NomeJogo = games.NomeJogo;
+            gamesDB.Estudio = games.Estudio;
+            gamesDB.Plataforma = games.Plataforma;
+
+            _bancoContext.Games.Update(gamesDB);
+            _bancoContext.SaveChanges();
+
+            return gamesDB;
+        }
+
+        public bool Apagar(int id)
+        {
+            GamesModel gamesDB = ListarPorId(id);
+
+            if (gamesDB == null) throw new System.Exception("Houve um erro ao apagar o Game");
+            _bancoContext.Games.Remove(gamesDB);
+            _bancoContext.SaveChanges();
+
+            return true;
         }
     }
 }

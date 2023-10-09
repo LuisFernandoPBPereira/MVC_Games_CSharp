@@ -21,19 +21,34 @@ namespace MeuPrimeiroMVC.Controllers
         {
             return View();
         }
-        public IActionResult Editar()
+        public IActionResult Editar(int id)
         {
-            return View();
+            GamesModel games = _gamesRepositorio.ListarPorId(id);
+            return View(games);
         }
-        public IActionResult ApagarConfirmacao()
+        public IActionResult ApagarConfirmacao(int id)
         {
-            return View();
+            GamesModel games = _gamesRepositorio.ListarPorId(id);
+            return View(games);
+        }
+
+        public IActionResult Apagar(int id)
+        {
+            _gamesRepositorio.Apagar(id);
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
         public IActionResult Criar(GamesModel game)
         {
             _gamesRepositorio.Adicionar(game);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Alterar(GamesModel game)
+        {
+            _gamesRepositorio.Atualizar(game);
             return RedirectToAction("Index");
         }
     }
