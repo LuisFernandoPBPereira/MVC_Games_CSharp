@@ -22,6 +22,7 @@
 </ul>
 
 <h2>No terminal do Package Manager:</h2>
+<p>Após criar uma Model com o modelo dos dados e um contexto do banco de dados, siga os seguintes passos:</p>
 <ul>
   <li>Execute este comando para criar a migration: Add-Migration NomeDaMigration -Context NomeDoContexto</li>
   <li>Para executar a criação do banco de dados: Update-Database -Context NomeDoContexto</li>
@@ -59,45 +60,49 @@
 <h2>Configuração do DataTables:</h2>
 <p>Vá até o arquivo desse diretório: Views\Shared\<strong>_Layout.cshtml</strong> e insira:</p>
 <pre>
-  <link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet"/>
+  &ltlink href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet"/&gt;
   <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
 </pre>
 <br />
 <p>Logo após, vá até o arquivo desse diretório: wwwroot\js\<strong>site.js</strong> e insira este bloco de código:</p>
 <pre>
   $(document).ready(function () {
-    $('#idDaSuaTabela').DataTable({
-        "ordering": true,
-        "paging": true,
-        "searching": true,
-        "oLanguage": {
-            "sEmptyTable": "Nenhum registro encontrado na tabela",
-            "sInfo": "Mostrar _START_ até _END_ de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrar 0 até 0 de 0 Registros",
-            "sInfoFiltered": "(Filtrar de _MAX_ total registros)",
-            "sInfoPostFix": "",
-            "sInfoThousands": ".",
-            "sLengthMenu": "Mostrar _MENU_ registros por pagina",
-            "sLoadingRecords": "Carregando...",
-            "sProcessing": "Processando...",
-            "sZeroRecords": "Nenhum registro encontrado",
-            "sSearch": "Pesquisar",
-            "oPaginate": {
-                "sNext": "Proximo",
-                "sPrevious": "Anterior",
-                "sFirst": "Primeiro",
-                "sLast": "Ultimo"
-            },
-            "oAria": {
-                "sSortAscending": ": Ordenar colunas de forma ascendente",
-                "sSortDescending": ": Ordenar colunas de forma descendente"
-            }
-        }
-    });
-})
-</pre>
+    getDatatable("#tabela1");
+    getDatatable("#tabela2");
+  })
 
-<span>Obs.: Não se esqueça de adicionar Id criado para a sua tabela</span>
+  function getDatatable(id) {
+      $(id).DataTable({
+          "ordering": true,
+          "paging": true,
+          "searching": true,
+          "oLanguage": {
+              "sEmptyTable": "Nenhum registro encontrado na tabela",
+              "sInfo": "Mostrar _START_ até _END_ de _TOTAL_ registros",
+              "sInfoEmpty": "Mostrar 0 até 0 de 0 Registros",
+              "sInfoFiltered": "(Filtrar de _MAX_ total registros)",
+              "sInfoPostFix": "",
+              "sInfoThousands": ".",
+              "sLengthMenu": "Mostrar _MENU_ registros por pagina",
+              "sLoadingRecords": "Carregando...",
+              "sProcessing": "Processando...",
+              "sZeroRecords": "Nenhum registro encontrado",
+              "sSearch": "Pesquisar",
+              "oPaginate": {
+                  "sNext": "Proximo",
+                  "sPrevious": "Anterior",
+                  "sFirst": "Primeiro",
+                  "sLast": "Ultimo"
+              },
+              "oAria": {
+                  "sSortAscending": ": Ordenar colunas de forma ascendente",
+                  "sSortDescending": ": Ordenar colunas de forma descendente"
+              }
+          }
+      });
+    }
+</pre>
+<p>Desta forma podemos utilizar inúmeros Id's para uma formatação de tabela, sem repetições</p>
 
 
 
