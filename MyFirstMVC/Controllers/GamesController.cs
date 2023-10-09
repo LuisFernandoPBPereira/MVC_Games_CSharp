@@ -34,22 +34,69 @@ namespace MeuPrimeiroMVC.Controllers
 
         public IActionResult Apagar(int id)
         {
-            _gamesRepositorio.Apagar(id);
-            return RedirectToAction("Index");
+            try
+            {
+                bool apagado = _gamesRepositorio.Apagar(id);
+
+                if (apagado)
+                {
+                    TempData["MensagemSucesso"] = "Jogo apagado com sucesso";
+                }
+                else
+                {
+                    TempData["MensagemErro"] = "Ops, não foi possível apagar o jogo, tente novamente!";
+                }
+
+                return RedirectToAction("Index");
+            }
+            catch (System.Exception erro)
+            {
+                TempData["MensagemErro"] = $"Ops, não foi possível apagar o jogo, tente novamente! Detalhe do erro:{erro.Message}";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
         public IActionResult Criar(GamesModel game)
         {
-            _gamesRepositorio.Adicionar(game);
-            return RedirectToAction("Index");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _gamesRepositorio.Adicionar(game);
+                    TempData["MensagemSucesso"] = "Jogo cadastrado com sucesso";
+                    return RedirectToAction("Index");
+                }
+
+                return View(game);
+            }
+            catch (System.Exception erro)
+            {
+                TempData["MensagemErro"] = $"Ops, não foi possível cadastrar o jogo, tente novamente! Detalhe do erro:{erro.Message}";
+                return RedirectToAction("Index");
+            }
+
         }
 
         [HttpPost]
         public IActionResult Alterar(GamesModel game)
         {
-            _gamesRepositorio.Atualizar(game);
-            return RedirectToAction("Index");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _gamesRepositorio.Atualizar(game);
+                    TempData["MensagemSucesso"] = "Jogo alterado com sucesso";
+                    return RedirectToAction("Index");
+                }
+
+                return View("Editar", game);
+            }
+            catch (System.Exception erro)
+            {
+                TempData["MensagemSucesso"] = $"Ops, não foi possível alterar o jogo, tente novamente! Detalhe do erro:{erro.Message}";
+                return RedirectToAction("Index");
+            }
         }
     }
 }
