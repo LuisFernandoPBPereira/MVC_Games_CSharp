@@ -1,4 +1,4 @@
-﻿using MeuPrimeiroMVC.Models;
+﻿using MyFirstMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MeuPrimeiroMVC.Controllers
+namespace MyFirstMVC.Controllers
 {
     public class HomeController : Controller
     {

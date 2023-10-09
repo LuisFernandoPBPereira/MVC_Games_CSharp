@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MeuPrimeiroMVC.Models
+namespace MyFirstMVC.Models
 {
     public class GamesModel
     {

@@ -1,4 +1,4 @@
-using MeuPrimeiroMVC.Data;
+using MyFirstMVC.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +31,7 @@ namespace MyFirstMVC
                 .AddDbContext<BancoContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DataBase")));
             //toda vez que a interface for chamada a injeção de dependência irá usar GamesRepositorio
             services.AddScoped<IGamesRepositorio, GamesRepositorio>();
+            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

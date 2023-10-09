@@ -1,9 +1,9 @@
-﻿using MeuPrimeiroMVC.Models;
+﻿using MyFirstMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using MyFirstMVC.Repositorio;
 using System.Collections.Generic;
 
-namespace MeuPrimeiroMVC.Controllers
+namespace MyFirstMVC.Controllers
 {
     public class GamesController : Controller
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MeuPrimeiroMVC.Controllers
+namespace MyFirstMVC.Controllers
 {
     public class HomeController1 : Controller
     {

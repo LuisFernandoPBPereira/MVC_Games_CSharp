@@ -1,5 +1,5 @@
-﻿using MeuPrimeiroMVC.Data;
-using MeuPrimeiroMVC.Models;
+﻿using MyFirstMVC.Data;
+using MyFirstMVC.Models;
 using System.Collections.Generic;
 using System.Linq;
 

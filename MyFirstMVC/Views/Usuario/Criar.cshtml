@@ -1,0 +1,57 @@
+﻿@using MyFirstMVC.Enums;
+@model UsuarioModel
+@{
+    ViewData["Title"] = "Criar de Usuário";
+}
+<link rel="stylesheet" href="~/css/alerts.css" />
+
+<div class="text-center">
+
+    <h1 class="display-4">Cadastrar Usuário</h1>
+
+    
+</div>
+
+<!-- Para mostrarmos a mensagem de validação dos campos do form,
+     usamos Html.ValidationMessageFor(x => x.campo), e então
+     automaticamente a mensagem irá aparecer abaixo do input
+-->
+
+<form asp-controller="Usuario" asp-action="Criar" method="post">
+    <div class="form-group">
+        <label for="nome" >Nome</label>
+        <input type="text" asp-for="Nome" class="form-control" placeholder="Digite o nome do usuário">
+        @Html.ValidationMessageFor(x => x.Nome)
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" asp-for="Email" class="form-control" placeholder="Digite o e-mail do usuário">
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+
+    <div class="form-group">
+        <label for="login">Login</label>
+        <input type="text" asp-for="Login" class="form-control" placeholder="Digite o login do usuário">
+        @Html.ValidationMessageFor(x => x.Login)
+    </div>
+    
+    <div class="form-group">
+        <label for="login">Perfil</label>
+        <select asp-for="Perfil" class="form-control">
+            <option value="0">Selecione</option>
+            <option value="@PerfilEnum.Admin">Administrador</option>
+            <option value="@PerfilEnum.Padrao">Padrão</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" asp-for="Senha" class="form-control" placeholder="Digite a senha do usuário">
+        @Html.ValidationMessageFor(x => x.Senha)
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">Adicionar</button>
+    <a class="btn btn-secondary btn-block" role="button" asp-controller="Usuario" asp-action="Index">Voltar</a>
+</form>
+

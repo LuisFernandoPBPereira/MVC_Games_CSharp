@@ -1,7 +1,8 @@
-﻿using MeuPrimeiroMVC.Models;
+﻿using MyFirstMVC.Models;
 using Microsoft.EntityFrameworkCore;
+using MyFirstMVC.Models;
 
-namespace MeuPrimeiroMVC.Data
+namespace MyFirstMVC.Data
 {
     public class BancoContext : DbContext
     {
@@ -11,5 +12,6 @@ namespace MeuPrimeiroMVC.Data
         }
 
         public DbSet<GamesModel> Games { get; set; }
+        public DbSet<UsuarioModel> Usuarios { get; set; }
     }
 }
