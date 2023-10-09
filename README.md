@@ -19,3 +19,41 @@
   <li>EntityFrameworkCore.Tools (Ferramentas do Entity para o NuGet Package Manager no Visual Studio)</li>
   <li>AspNetCore.Mvc.Razor.RuntimeCompilation (com isso, não é preciso uma nova build da aplicação, apenas atualizar o localhost)</li>
 </ul>
+
+<h2>No terminal do Package Manager:</h2>
+<ul>
+  <li>Execute este comando para criar a migration: Add-Migration NomeDaMigration -Context NomeDoContexto</li>
+  <li>Para executar a criação do banco de dados: Update-Database -Context NomeDoContexto</li>
+</ul>
+
+<h2>Configurando o Banco de Dados:</h2>
+
+<br />
+<p>No arquivo <strong>appsettings.json</strong>, insira este bloco de código:</p>
+<pre>
+  "ConnectionStrings": {
+    "DataBase": "Server=NomeDoServidor;Database=NomeDoBancoDeDados;User Id=NomeDeUsuario;Password=Senha"
+  },
+</pre>
+
+<br />
+
+<p>Ficará desta maneira:</p>
+<pre>
+  {
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "ConnectionStrings": {
+    "DataBase": "Server=NomeDoServidor;Database=NomeDoBancoDeDados;User Id=NomeDeUsuario;Password=Senha"
+  },
+  "AllowedHosts": "*"
+}
+</pre>
+
+
+
