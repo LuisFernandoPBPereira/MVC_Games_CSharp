@@ -5,6 +5,7 @@ namespace MyFirstMVC.Repositorio
 {
     public interface IUsuarioRepositorio
     {
+        UsuarioModel BuscarPorLogin(string login);
         UsuarioModel ListarPorId(int id);
         List<UsuarioModel> BuscarUsuarios();
         UsuarioModel Adicionar(UsuarioModel usuario);
