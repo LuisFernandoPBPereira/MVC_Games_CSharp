@@ -1,6 +1,5 @@
 ﻿using MyFirstMVC.Models;
 using Microsoft.EntityFrameworkCore;
-using MyFirstMVC.Models;
 
 namespace MyFirstMVC.Data
 {

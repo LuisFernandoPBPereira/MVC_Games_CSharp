@@ -1,0 +1,13 @@
+﻿@model UsuarioModel
+@{
+    ViewData["Title"] = "Confirmação apagar usuário";
+}
+
+<div class="text-center">
+    <h3>Realmente deseja apagar o usuário (@Model.Nome)?</h3>
+</div>
+
+<a class="btn btn-primary btn-block" role="button" asp-controller="Usuario" asp-action="Index">Cancelar</a>
+<!-- Para a deleção ser concluída, precisamos passar o ID, diferentemente do form,
+     passamos o ID no asp-route-id, atribuindo @Model.Id-->
+<a class="btn btn-danger btn-block" role="button" asp-controller="Usuario" asp-route-id="@Model.Id" asp-action="Apagar">Confirmar</a>
