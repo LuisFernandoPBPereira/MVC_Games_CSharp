@@ -6,9 +6,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using MyFirstMVC.Filters;
 
 namespace MyFirstMVC.Controllers
 {
+    [PaginaParaUsuarioLogado]
     public class HomeController : Controller
     {
         

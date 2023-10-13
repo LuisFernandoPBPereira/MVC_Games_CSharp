@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyFirstMVC.Filters;
 using MyFirstMVC.Models;
 using MyFirstMVC.Repositorio;
 using System.Collections.Generic;
 
 namespace MyFirstMVC.Controllers
 {
+    [PaginaRestritaSomenteAdmin]
     public class UsuarioController : Controller
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
