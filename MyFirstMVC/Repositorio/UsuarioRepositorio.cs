@@ -28,6 +28,7 @@ namespace MyFirstMVC.Repositorio
         public UsuarioModel Adicionar(UsuarioModel usuario)
         {
             usuario.DataCadastro = DateTime.Now;
+            usuario.SetSenhaHash();
             //gravar no banco de dados
             _bancoContext.Usuarios.Add(usuario);
             _bancoContext.SaveChanges();
