@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using MyFirstMVC.Repositorio;
 using System.Collections.Generic;
+using MyFirstMVC.Filters;
 
 namespace MyFirstMVC.Controllers
 {
+    [PaginaParaUsuarioLogado]
     public class GamesController : Controller
     {
         private readonly IGamesRepositorio _gamesRepositorio;
