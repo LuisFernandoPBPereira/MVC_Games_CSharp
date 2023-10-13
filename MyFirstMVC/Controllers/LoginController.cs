@@ -23,6 +23,11 @@ namespace MyFirstMVC.Controllers
             return View();
         }
 
+        public IActionResult RedefinirSenha()
+        {
+            return View();
+        }
+
         public IActionResult Sair()
         {
             _sessao.RemoverSessaoUsuario();
@@ -55,6 +60,34 @@ namespace MyFirstMVC.Controllers
             catch (System.Exception erro) 
             {
                 TempData["MensagemErro"] = $"Ops, não foi possível realizar o login, tente novamente! Detalhe do erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult EnviarLinkSenha(RedefinirSenhaModel redefinirSenhaModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    UsuarioModel usuario = _usuarioRepositorio.BuscarPorEmailELogin(redefinirSenhaModel.Email, redefinirSenhaModel.Login);
+
+                    if (usuario != null)
+                    {
+                        string novaSenha = usuario.GerarNovaSenha();
+                        _usuarioRepositorio.Atualizar(usuario);
+
+                        TempData["MensagemSucesso"] = $"Enviamos para seu email cadastrado uma nova senha";
+                        return RedirectToAction("Index", "Login");
+                    }
+                    TempData["MensagemErro"] = $"Não foi possível redefinir sua senha. Por favor, verifique os dados informados";
+                }
+                return View("Index");
+            }
+            catch (System.Exception erro)
+            {
+                TempData["MensagemErro"] = $"Ops, não foi possível redefinir sua senha, tente novamente! Detalhe do erro: {erro.Message}";
                 return RedirectToAction("Index");
             }
         }
