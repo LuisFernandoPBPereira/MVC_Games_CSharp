@@ -11,5 +11,9 @@ namespace MyFirstMVC.Models
         public string Estudio { get; set; }
         [Required(ErrorMessage = "Digite o nome da plataforma")]
         public string Plataforma { get; set; }
+
+        public int? UsuarioId { get; set; }
+
+        public UsuarioModel Usuario { get; set; }
     }
 }

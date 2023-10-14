@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyFirstMVC.Repositorio;
 using System.Collections.Generic;
 using MyFirstMVC.Filters;
+using MyFirstMVC.Helper;
 
 namespace MyFirstMVC.Controllers
 {
@@ -10,13 +11,17 @@ namespace MyFirstMVC.Controllers
     public class GamesController : Controller
     {
         private readonly IGamesRepositorio _gamesRepositorio;
-        public GamesController(IGamesRepositorio gamesRepositorio)
+        private readonly ISessao _sessao;
+        public GamesController(IGamesRepositorio gamesRepositorio,
+                               ISessao sessao)
         {
             _gamesRepositorio= gamesRepositorio;
+            _sessao = sessao;
         }
         public IActionResult Index()
         {
-            List<GamesModel> games = _gamesRepositorio.BuscarGames();
+            UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+            List<GamesModel> games = _gamesRepositorio.BuscarGames(usuarioLogado.Id);
             return View(games);
         }
         public IActionResult Criar()
@@ -65,7 +70,9 @@ namespace MyFirstMVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _gamesRepositorio.Adicionar(game);
+                    UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+                    game.UsuarioId = usuarioLogado.Id;
+                    game = _gamesRepositorio.Adicionar(game);
                     TempData["MensagemSucesso"] = "Jogo cadastrado com sucesso";
                     return RedirectToAction("Index");
                 }
@@ -87,6 +94,8 @@ namespace MyFirstMVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+                    game.UsuarioId = usuarioLogado.Id;
                     _gamesRepositorio.Atualizar(game);
                     TempData["MensagemSucesso"] = "Jogo alterado com sucesso";
                     return RedirectToAction("Index");
