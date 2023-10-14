@@ -124,3 +124,46 @@
   },
 </pre>
 
+<h2>Para o Funcionamento do Modal:</h2>
+<p>Insira este código HTML onde deseje que o modal fique:</p>
+<pre>
+  &ltdiv id="modalGamesUsuario" class="modal" tabindex="-1"&gt
+        &ltdiv class="modal-dialog modal-lg"&gt
+            &ltdiv class="modal-content"&gt
+                &ltdiv class="modal-header"&gt
+                    &lth5 class="modal-title">Listagem de Games &lt/h5&gt
+                    &ltbutton type="button" class="close" data-dismiss="modal" aria-label="Close"&gt
+                        &ltspan aria-hidden="true"&gt &times; &lt/span&gt
+                    &lt/button&gt
+                &lt/div&gt
+                &ltdiv class="modal-body"&gt
+                    &ltdiv id="listaGamesUsuario"&gt&lt/div&gt
+                &lt/div&gt
+            &lt/div&gt
+        &lt/div&gt
+    &lt/div&gt
+</pre>
+<p>Vá até o arquivo desse diretório: wwwroot\js\<strong>site.js</strong> e insira este bloco de código:</p>
+<pre>
+  $('.btn-total-games').click(function () {
+        var usuarioId = $(this).attr('usuario-id');
+        $.ajax({
+            type: 'GET',
+            url: `/Usuario/ListarGamesPorUsuarioId/${usuarioId}`,
+            success: function (result) {
+                $("#listaGamesUsuario").html(result);
+                $('#modalGamesUsuario').modal();
+                getDatatable('#table-games-usuario');
+            }
+        });
+    });
+</pre>
+<p>
+  Usando JQuery, com a ação de click do botão da classe ".btn-total-games", 
+  pegamos o ID do usuário e armazenamos, logo após, usamos ajax com um método
+  GET na rota citada para caso houver sucesso, ocorrerá uma mudança no HTML,
+  efetuando a ativação do modal na div com id "#listaGamesUsuario" usando
+  datatable.
+</p>
+<br/>
+<p>Ao concluir os passos anteriores, crie uma PartialView e crie uma tabela de acordo com o desejado.</p>
