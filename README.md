@@ -104,5 +104,23 @@
 </pre>
 <p>Desta forma podemos utilizar inúmeros Id's para uma formatação de tabela, sem repetições</p>
 
-
+<h2>Configuração de envio de e-mail SMTP</h2>
+<p>No arquivo <strong>appsettings.json</strong>, insira:</p>
+<ul>
+  <li>UserName: Coloque seu email, deve ser hotmail/outlook</li>
+  <li>Nome: Nome do display do e-mail</li>
+  <li>Host: link para o funcionamento do envio</li>
+  <li>Senha: Coloque a senha do seu email</li>
+  <li>Porta: Insira a Porta 587, que é recomendada pela Microsoft</li>
+</ul>
+<p>Ficará assim:</p>
+<pre>
+  "SMTP": {
+    "UserName": "meuemail@hotmail.com",
+    "Nome": "Sistema de Games",
+    "Host": "smtp-mail.outlook.com",
+    "Senha": "minhasenha",
+    "Porta":  587
+  },
+</pre>
 
