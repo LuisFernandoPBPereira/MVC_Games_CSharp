@@ -6,6 +6,19 @@
 $(document).ready(function () {
     getDatatable("#table-games");
     getDatatable("#table-usuarios");
+
+    $('.btn-total-games').click(function () {
+        var usuarioId = $(this).attr('usuario-id');
+        $.ajax({
+            type: 'GET',
+            url: `/Usuario/ListarGamesPorUsuarioId/${usuarioId}`,
+            success: function (result) {
+                $("#listaGamesUsuario").html(result);
+                $('#modalGamesUsuario').modal();
+                getDatatable('#table-games-usuario');
+            }
+        });
+    });
 })
 
 function getDatatable(id) {

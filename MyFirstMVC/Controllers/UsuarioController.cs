@@ -10,9 +10,12 @@ namespace MyFirstMVC.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
-        public UsuarioController(IUsuarioRepositorio usuarioRepositorio)
+        private readonly IGamesRepositorio _gamesRepositorio;
+        public UsuarioController(IUsuarioRepositorio usuarioRepositorio,
+                                 IGamesRepositorio gamesRepositorio)
         {
             _usuarioRepositorio = usuarioRepositorio;
+            _gamesRepositorio= gamesRepositorio;
         }
         public IActionResult Index()
         {
@@ -28,6 +31,12 @@ namespace MyFirstMVC.Controllers
         {
             UsuarioModel usuario = _usuarioRepositorio.ListarPorId(id); 
             return View(usuario);
+        }
+
+        public IActionResult ListarGamesPorUsuarioId(int id)
+        {
+            List<GamesModel> games = _gamesRepositorio.BuscarGames(id);
+            return PartialView("_GamesUsuario", games);
         }
 
         [HttpPost]

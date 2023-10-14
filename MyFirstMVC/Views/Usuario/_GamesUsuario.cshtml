@@ -1,0 +1,26 @@
+﻿@model List<GamesModel>
+
+<table class="table" id="table-games-usuario">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome do Jogo</th>
+            <th scope="col">Estúdio</th>
+            <th scope="col">Plataforma</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model != null && Model.Any())
+        {
+            @foreach (var game in Model)
+            {
+                <tr>
+                    <th scope="row">@game.Id</th>
+                    <td>@game.NomeJogo</td>
+                    <td>@game.Estudio</td>
+                    <td>@game.Plataforma</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
