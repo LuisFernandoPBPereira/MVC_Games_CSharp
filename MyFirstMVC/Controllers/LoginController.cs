@@ -9,11 +9,14 @@ namespace MyFirstMVC.Controllers
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
         private readonly ISessao _sessao;
+        private readonly IEmail _email;
         public LoginController(IUsuarioRepositorio usuarioRepositorio,
-                               ISessao sessao)
+                               ISessao sessao,
+                               IEmail email)
         {
             _usuarioRepositorio = usuarioRepositorio;
             _sessao = sessao;
+            _email = email;
         }
         public IActionResult Index()
         {
@@ -76,9 +79,20 @@ namespace MyFirstMVC.Controllers
                     if (usuario != null)
                     {
                         string novaSenha = usuario.GerarNovaSenha();
-                        _usuarioRepositorio.Atualizar(usuario);
+                        string mensagem = $"Sua nova senha é: {novaSenha}";
 
-                        TempData["MensagemSucesso"] = $"Enviamos para seu email cadastrado uma nova senha";
+                        bool emailEnviado = _email.Enviar(usuario.Email, "Sistema de Games - Nova Senha", mensagem);
+
+                        if(emailEnviado)
+                        {
+                            _usuarioRepositorio.Atualizar(usuario);
+                            TempData["MensagemSucesso"] = $"Enviamos para seu email cadastrado uma nova senha";
+
+                        }
+                        else
+                        {
+                            TempData["MensagemErro"] = $"Não foi possível enviar o email. Por favor, tente novamente";
+                        }
                         return RedirectToAction("Index", "Login");
                     }
                     TempData["MensagemErro"] = $"Não foi possível redefinir sua senha. Por favor, verifique os dados informados";

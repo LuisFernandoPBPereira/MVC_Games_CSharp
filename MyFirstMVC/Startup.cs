@@ -37,6 +37,7 @@ namespace MyFirstMVC
             services.AddScoped<IGamesRepositorio, GamesRepositorio>();
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             services.AddScoped<ISessao, Sessao>();
+            services.AddScoped<IEmail, Email>();
 
             services.AddSession(o =>
             {
