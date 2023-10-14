@@ -1,0 +1,55 @@
+﻿@using MyFirstMVC.Enums;
+@model AlterarSenhaModel
+@{
+    ViewData["Title"] = "Alterar senha do Usuário";
+}
+<link rel="stylesheet" href="~/css/alerts.css" />
+
+<div class="text-center">
+
+    <h1 class="display-4">Alterar senha do Usuário</h1>
+
+    
+</div>
+
+<!-- Para mostrarmos a mensagem de validação dos campos do form,
+     usamos Html.ValidationMessageFor(x => x.campo), e então
+     automaticamente a mensagem irá aparecer abaixo do input
+-->
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+        @TempData["MensagemSucesso"]
+    </div>
+}
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+
+<form asp-controller="AlterarSenha" asp-action="Alterar" method="post">
+    <div class="form-group">
+        <label for="senha" >Senha Atual</label>
+        <input type="password" asp-for="SenhaAtual" class="form-control" placeholder="Digite a senha atual do usuário">
+        @Html.ValidationMessageFor(x => x.SenhaAtual)
+    </div>
+    <div class="form-group">
+        <label for="novaSenha" >Nova Senha</label>
+        <input type="password" asp-for="NovaSenha" class="form-control" placeholder="Digite a nova senha do usuário">
+        @Html.ValidationMessageFor(x => x.NovaSenha)
+    </div>
+    <div class="form-group">
+        <label for="confirmacaoNovaSenha">Confirme a nova senha</label>
+        <input type="password" asp-for="ConfirmarNovaSenha" class="form-control" placeholder="Confirme a nova senha do usuário">
+        @Html.ValidationMessageFor(x => x.ConfirmarNovaSenha)
+    </div>
+    
+    <button type="submit" class="btn btn-primary btn-block">Alterar Senha</button>
+    <a class="btn btn-secondary btn-block" role="button" asp-controller="Home" asp-action="Index">Voltar</a>
+</form>
+

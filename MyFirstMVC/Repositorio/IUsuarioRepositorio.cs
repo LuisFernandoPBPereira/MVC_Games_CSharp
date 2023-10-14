@@ -11,6 +11,7 @@ namespace MyFirstMVC.Repositorio
         List<UsuarioModel> BuscarUsuarios();
         UsuarioModel Adicionar(UsuarioModel usuario);
         UsuarioModel Atualizar(UsuarioModel usuario);
+        UsuarioModel AlterarSenha(AlterarSenhaModel alterarSenhaModel);
         bool Apagar(int id);
     }
 }
