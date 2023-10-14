@@ -16,9 +16,9 @@ namespace MyFirstMVC.Repositorio
         {
             return _bancoContext.Games.FirstOrDefault(x => x.Id == id);
         }
-        public List<GamesModel> BuscarGames()
+        public List<GamesModel> BuscarGames(int usuarioId)
         {
-            return _bancoContext.Games.ToList();
+            return _bancoContext.Games.Where(x => x.UsuarioId == usuarioId).ToList();
         }
         public GamesModel Adicionar(GamesModel games)
         {

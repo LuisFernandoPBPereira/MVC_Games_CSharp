@@ -1,6 +1,7 @@
 ﻿using MyFirstMVC.Enums;
 using MyFirstMVC.Helper;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace MyFirstMVC.Models
@@ -21,6 +22,7 @@ namespace MyFirstMVC.Models
         public string Senha { get; set; }
         public DateTime DataCadastro { get; set; }
         public DateTime? DataAtualizacao { get; set; }
+        public virtual List<GamesModel> Games { get; set; }
 
         public bool SenhaValida(string senha)
         {
