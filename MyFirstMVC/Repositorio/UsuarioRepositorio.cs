@@ -1,4 +1,5 @@
-﻿using MyFirstMVC.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MyFirstMVC.Data;
 using MyFirstMVC.Models;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,9 @@ namespace MyFirstMVC.Repositorio
         }
         public List<UsuarioModel> BuscarUsuarios()
         {
-            return _bancoContext.Usuarios.ToList();
+            return _bancoContext.Usuarios
+                .Include(x => x.Games)
+                .ToList();
         }
         public UsuarioModel Adicionar(UsuarioModel usuario)
         {
